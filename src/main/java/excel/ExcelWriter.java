@@ -19,11 +19,12 @@ public class ExcelWriter {
     FileOutputStream outFile;
     XSSFWorkbook workbook;
     XSSFSheet sheet;
+    XSSFSheet sheetCov;
     String nameCov;
     ArrayList<String> names = new ArrayList<>();
     ArrayList<ArrayList<?>> results = new ArrayList<>();
     ArrayList<ArrayList<Double>> cov = new ArrayList<>();
-
+    FileOutputStream file1 = new FileOutputStream("ДЗ5.xlsx");
 
     public ExcelWriter(String filePath, ArrayList<ArrayList<?>> result, AllOperations allOperations) throws IOException {
 
@@ -34,12 +35,13 @@ public class ExcelWriter {
             throw new RuntimeException(e);
         }
 
-        File file1 = new File("target/ДЗ5.xlsx");
-        file1.getParentFile().mkdirs();
-        outFile = new FileOutputStream(file1);
-        workbook = new XSSFWorkbook(file);
-        workbook.removeSheetAt(workbook.getNumberOfSheets() - 1);
+//        FileOutputStream file1 = new FileOutputStream("target/ДЗ5.xlsx");
+//        file1.getParentFile().mkdirs();
+//        outFile = new FileOutputStream(file1);
+        workbook = new XSSFWorkbook();
+//        workbook.removeSheetAt(workbook.getNumberOfSheets() - 1);
         sheet = workbook.createSheet("Результаты");
+        sheetCov = workbook.createSheet("Коэффициенты ковариации");
         names = allOperations.fillNames();
         results = result;
         cov = allOperations.getCovariation();
@@ -71,17 +73,17 @@ public class ExcelWriter {
             colIndex = 1;
         }
 
-        int rowCov = 15;
+        int rowCov = 0;
         int colCov = 1;
-        Row row2 = sheet.createRow(rowCov);
+        Row row2 = sheetCov.createRow(rowCov);
         Cell name = row2.createCell(0);
         name.setCellValue(nameCov);
 
         for(ArrayList<Double> row : cov) {
             for (Object el : row) {
-                Row row1 = sheet.getRow(rowCov);
+                Row row1 = sheetCov.getRow(rowCov);
                 if (row1 == null) {
-                    row1 = sheet.createRow(rowCov);
+                    row1 = sheetCov.createRow(rowCov);
                 }
                 Cell cell = row1.createCell(colCov);
                 cell.setCellValue(el.toString());
@@ -90,7 +92,7 @@ public class ExcelWriter {
             rowCov++;
             colCov = 1;
         }
-        workbook.write(outFile);
+        workbook.write(file1);
         JOptionPane.showMessageDialog(null, "запись файла выполнена");
         workbook.close();
         file.close();
