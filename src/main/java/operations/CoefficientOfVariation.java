@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoefficientOfVariation implements Operation{
+
     String name;
     ArrayList<ArrayList<Double>> list;
     ArrayList<Double> result = new ArrayList<>();

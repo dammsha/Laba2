@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spread implements Operation{
+
     String name;
     ArrayList<ArrayList<Double>> list;
     ArrayList<Double> result = new ArrayList<>();
@@ -23,6 +24,7 @@ public class Spread implements Operation{
             result.add(stats.getMax() - stats.getMin());
         }
     }
+
     @Override
     public ArrayList<Double> getResult() {
         return result;

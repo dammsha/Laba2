@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class FrameCombo extends JFrame {
+
     JComboBox comboBox;
     JButton b_exit = new JButton("Выход");
     GridLayout gr = new GridLayout(2,1);
+
     public FrameCombo(String filePath) throws IOException {
         setTitle("Окно");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

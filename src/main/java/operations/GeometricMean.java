@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeometricMean implements Operation{
+
     String name;
     ArrayList<ArrayList<Double>> list;
     ArrayList<Double> result = new ArrayList<>();
+
     public GeometricMean(ArrayList<ArrayList<Double>> list) {
         this.list = list;
         this.name = "Среднее геометрическое";

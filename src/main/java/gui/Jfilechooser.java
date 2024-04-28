@@ -1,7 +1,5 @@
 package gui;
 
-import Laba_2.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -10,11 +8,9 @@ import java.net.URISyntaxException;
 public class Jfilechooser extends Component {
 
     private JFileChooser fileChooser;
-    private final String[][] FILTERS = {{"xlsx", "Файлы Excel (*.xlsx)"}};
 
     public Jfilechooser() throws URISyntaxException {
         fileChooser = new JFileChooser(new File("src/main/resources/"));
-//        new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile()
     }
 
     public String openFile() {

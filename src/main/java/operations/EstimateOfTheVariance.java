@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EstimateOfTheVariance implements Operation{
+
     String name;
     ArrayList<ArrayList<Double>> list;
     ArrayList<Double> result = new ArrayList<>();
+
     public EstimateOfTheVariance(ArrayList<ArrayList<Double>> list) {
         this.list = list;
         this.name = "Оценка дисперсии";

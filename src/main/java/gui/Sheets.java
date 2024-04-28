@@ -11,23 +11,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Sheets {
+
     FileInputStream file;
     XSSFWorkbook workbook;
     XSSFSheet sheet;
-    String filePath;
     int numberSheets;
     ArrayList<String> names = new ArrayList<>();
 
-
     Sheets(String filePath){
+
         try {
             file  = new FileInputStream(filePath);
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "файл не найден");
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-
-            JOptionPane.showMessageDialog(null, "ошибка считывания файла");
             throw new RuntimeException(e);
         }
         try {

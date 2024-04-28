@@ -13,6 +13,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class Panel extends JPanel {
+
     JButton b_openFile = new JButton("Открыть файл");
     JButton b_saveFile = new JButton("Сохранить файл");
     JButton b_start = new JButton("Начать рассчеты");
@@ -27,7 +28,6 @@ public class Panel extends JPanel {
     ArrayList<ArrayList<Double>> list;
     ArrayList<ArrayList<?>> results = new ArrayList<>();
     ArrayList<String> names = new ArrayList<>();
-
 
     Panel() throws URISyntaxException {
         setLayout(gr);
@@ -74,7 +74,6 @@ public class Panel extends JPanel {
             }
         });
 
-
         b_saveFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,6 +94,4 @@ public class Panel extends JPanel {
             }
         });
     }
-
-
 }

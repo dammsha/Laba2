@@ -20,8 +20,6 @@ public class AllOperations {
     ArrayList<ArrayList<?>> results = new ArrayList<>();
 
     public AllOperations() {
-    //        this.names = fillNames();
-    //        this.results = fillResults();
     }
 
     public void start(ArrayList<ArrayList<Double>> d) {
@@ -53,6 +51,7 @@ public class AllOperations {
     }
 
     public ArrayList<String> fillNames() {
+
         try {
         names.add(geometricMean.getName());
         names.add(arithmeticMean.getName());
@@ -89,6 +88,7 @@ public class AllOperations {
     public ArrayList<ArrayList<Double>> getCovariation() {
         return coefficientsOfCovarianc.getResult();
     }
+
     public String getCovName() {return coefficientsOfCovarianc.getName();}
 
     public ArrayList<String> getNames() {

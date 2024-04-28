@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoefficientsOfCovarianc implements Operation {
+
     String name;
     ArrayList<ArrayList<Double>> list;
     ArrayList<ArrayList<Double>> covarianceMatrix = new ArrayList<>();
@@ -16,6 +17,7 @@ public class CoefficientsOfCovarianc implements Operation {
         this.name = "Коэффициент ковариации";
         calculate();
     }
+
     public void calculate() {
         Covariance covariance = new Covariance();
         for (ArrayList<Double> innerList1 : list) {

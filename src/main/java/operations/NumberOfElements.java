@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NumberOfElements implements Operation{
+
     String name;
     ArrayList<ArrayList<Double>> list;
     ArrayList<Integer> result = new ArrayList<>();
@@ -18,7 +19,6 @@ public class NumberOfElements implements Operation{
     }
 
     public void calculate() {
-
         for (int i = 0; i < list.size(); i++) {
             Integer size = list.get(i).size();
             result.add(size);
