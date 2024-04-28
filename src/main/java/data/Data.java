@@ -8,10 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Data {
-    Jfilechooser jfilechooser = new Jfilechooser();
     ExcelReader excelReader;
-    FrameCombo frameCombo;
-    String path;
     ArrayList<ArrayList<Double>> dataArray = new ArrayList<>();
 
     public Data(String path, int index) throws IOException {

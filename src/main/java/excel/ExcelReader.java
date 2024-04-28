@@ -1,9 +1,11 @@
 package excel;
 import gui.FrameCombo;
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,12 +16,13 @@ public class ExcelReader {
     FileInputStream file;
     XSSFWorkbook workbook;
     XSSFSheet sheet;
-
+    String filePath;
 
     public ExcelReader(String filePath, int index) throws IOException {
         file = new FileInputStream(filePath);
         workbook = new XSSFWorkbook(file);
         sheet = workbook.getSheetAt(index);
+        this.filePath = filePath;
     }
 
     public ArrayList<ArrayList<Double>> readExcel() {
@@ -46,7 +49,9 @@ public class ExcelReader {
                     }
                 }
             }
+            workbook.close();
             file.close();
+//            FileUtils.delete(new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }

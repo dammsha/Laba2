@@ -18,10 +18,10 @@ public class NumberOfElements implements Operation{
     }
 
     public void calculate() {
-        DescriptiveStatistics stats = new DescriptiveStatistics();
+
         for (int i = 0; i < list.size(); i++) {
-            list.get(i).forEach(stats::addValue);
-            result.add((int) stats.getN());
+            Integer size = list.get(i).size();
+            result.add(size);
         }
     }
 

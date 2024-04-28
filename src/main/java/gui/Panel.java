@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 public class Panel extends JPanel {
@@ -28,7 +29,7 @@ public class Panel extends JPanel {
     ArrayList<String> names = new ArrayList<>();
 
 
-    Panel() {
+    Panel() throws URISyntaxException {
         setLayout(gr);
         add(b_openFile);
         add(b_start);
@@ -38,7 +39,11 @@ public class Panel extends JPanel {
         b_openFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jfilechooser = new Jfilechooser();
+                try {
+                    jfilechooser = new Jfilechooser();
+                } catch (URISyntaxException ex) {
+                    throw new RuntimeException(ex);
+                }
                 path = jfilechooser.openFile();
                 try {
                     frameCombo = new FrameCombo(path);
@@ -57,20 +62,27 @@ public class Panel extends JPanel {
                         data = new Data(path, frameCombo.getIndexSheet());
                     } catch (IOException q) {
                         throw new RuntimeException(q);
+                    } catch (NullPointerException w) {
+                        JOptionPane.showMessageDialog(null, "не был выбран файл");
+                        throw new RuntimeException(w);
                     }
+                    list = data.getDataArray();
+                    allOperations.start(list);
+                    results = allOperations.fillResults();
+                    JOptionPane.showMessageDialog(null, "Рассчеты выполнены, по-моему это зачет");
                 }
-                list = data.getDataArray();
-                allOperations.start(list);
-                results = allOperations.fillResults();
             }
         });
+
 
         b_saveFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     excelWriter = new ExcelWriter(path, results, allOperations);
+                    JOptionPane.showMessageDialog(null, "Файл сохранен");
                 } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "ошибка сохранения");
                     throw new RuntimeException(ex);
                 }
             }

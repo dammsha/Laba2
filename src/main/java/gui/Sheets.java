@@ -1,9 +1,12 @@
 package gui;
 
+import org.apache.poi.openxml4j.exceptions.NotOfficeXmlFileException;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import javax.swing.*;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,9 +19,26 @@ public class Sheets {
     ArrayList<String> names = new ArrayList<>();
 
 
-    Sheets(String filePath) throws IOException {
-        file  = new FileInputStream(filePath);
-        workbook = new XSSFWorkbook(file);
+    Sheets(String filePath){
+        try {
+            file  = new FileInputStream(filePath);
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "файл не найден");
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+
+            JOptionPane.showMessageDialog(null, "ошибка считывания файла");
+            throw new RuntimeException(e);
+        }
+        try {
+            workbook = new XSSFWorkbook(file);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "ошибка считывания книги");
+            throw new RuntimeException(e);
+        } catch (NotOfficeXmlFileException e) {
+            JOptionPane.showMessageDialog(null, "ошибка считывания книги");
+            throw new RuntimeException(e);
+        }
         names = namesSheets();
         numberSheets = numberSheets();
     }

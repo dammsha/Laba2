@@ -1,5 +1,6 @@
 package operations;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,8 +20,8 @@ public class AllOperations {
     ArrayList<ArrayList<?>> results = new ArrayList<>();
 
     public AllOperations() {
-//        this.names = fillNames();
-//        this.results = fillResults();
+    //        this.names = fillNames();
+    //        this.results = fillResults();
     }
 
     public void start(ArrayList<ArrayList<Double>> d) {
@@ -52,6 +53,7 @@ public class AllOperations {
     }
 
     public ArrayList<String> fillNames() {
+        try {
         names.add(geometricMean.getName());
         names.add(arithmeticMean.getName());
         names.add(estimateOfStandardDeviation.getName());
@@ -62,6 +64,10 @@ public class AllOperations {
         names.add(estimateOfTheVariance.getName());
         names.add(maximum.getName());
         names.add(minimum.getName());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "не были произведены рассчеты");
+            throw new RuntimeException(e);
+        }
 
         return names;
     }
@@ -81,8 +87,9 @@ public class AllOperations {
     }
 
     public ArrayList<ArrayList<Double>> getCovariation() {
-        return coefficientsOfCovarianc.covarianceMatrix;
+        return coefficientsOfCovarianc.getResult();
     }
+    public String getCovName() {return coefficientsOfCovarianc.getName();}
 
     public ArrayList<String> getNames() {
         return names;

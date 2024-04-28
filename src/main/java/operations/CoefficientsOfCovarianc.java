@@ -2,6 +2,7 @@ package operations;
 
 import org.apache.commons.math3.stat.correlation.Covariance;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,11 @@ public class CoefficientsOfCovarianc implements Operation {
         for (ArrayList<Double> innerList1 : list) {
             ArrayList<Double> row = new ArrayList<>();
             for (ArrayList<Double> innerList2 : list) {
-                row.add(covariance.covariance(innerList1.stream().mapToDouble(Double::doubleValue).toArray(), innerList2.stream().mapToDouble(Double::doubleValue).toArray()));
+                System.out.println(innerList1.size() + " " + innerList2.size());
+                if (innerList1.size() == innerList2.size()) {
+                    row.add(covariance.covariance(innerList1.stream().mapToDouble(Double::doubleValue).toArray(), innerList2.stream().mapToDouble(Double::doubleValue).toArray()));
+                } else {
+                    JOptionPane.showMessageDialog(null,"Невозможно вывести матрицу коэффициентов ковариации");}
             }
             covarianceMatrix.add(row);
         }
