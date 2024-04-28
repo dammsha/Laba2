@@ -34,7 +34,7 @@ public class ExcelWriter {
             throw new RuntimeException(e);
         }
 
-        File file1 = new File("target/src/ДЗ5.xlsx");
+        File file1 = new File("target/ДЗ5.xlsx");
         file1.getParentFile().mkdirs();
         outFile = new FileOutputStream(file1);
         workbook = new XSSFWorkbook(file);

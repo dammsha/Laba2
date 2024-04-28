@@ -10,7 +10,11 @@ public class Jfilechooser extends Component {
     private JFileChooser fileChooser;
 
     public Jfilechooser() throws URISyntaxException {
-        fileChooser = new JFileChooser(new File("src/main/resources/"));
+        try {
+            File currentDirectory = new File(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParentFile();
+            fileChooser = new JFileChooser(currentDirectory);} catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public String openFile() {
