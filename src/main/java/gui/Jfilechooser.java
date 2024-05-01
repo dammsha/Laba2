@@ -27,16 +27,16 @@ public class Jfilechooser extends Component {
         return fileChooser.getSelectedFile().getAbsolutePath();
     }
 
-    public void saveFile() {
-        fileChooser.setDialogTitle("Сохранение файла");
-        // Определение режима - только файл
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int result = fileChooser.showSaveDialog(Jfilechooser.this);
-        // Если файл выбран, то представим его в сообщении
-        if (result == JFileChooser.APPROVE_OPTION )
-            JOptionPane.showMessageDialog(Jfilechooser.this,
-                    "Файл '" + fileChooser.getSelectedFile() +
-                            " ) сохранен");
-    }
+//    public void saveFile() {
+//        fileChooser.setDialogTitle("Сохранение файла");
+//        // Определение режима - только файл
+//        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+//        int result = fileChooser.showSaveDialog(Jfilechooser.this);
+//        // Если файл выбран, то представим его в сообщении
+//        if (result == JFileChooser.APPROVE_OPTION )
+//            JOptionPane.showMessageDialog(Jfilechooser.this,
+//                    "Файл '" + fileChooser.getSelectedFile() +
+//                            " ) сохранен");
+//    }
 
 }

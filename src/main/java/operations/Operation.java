@@ -7,4 +7,5 @@ public interface Operation {
 
     void calculate();
     ArrayList<?> getResult();
+    String getName();
 }

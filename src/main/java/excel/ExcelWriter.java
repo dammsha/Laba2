@@ -1,9 +1,6 @@
 package excel;
 
-import gui.FrameCombo;
-import operations.AllOperations;
-import org.apache.commons.io.FileUtils;
-import org.apache.poi.openxml4j.opc.OPCPackage;
+import operations.Calculator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -11,7 +8,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.swing.*;
 import java.io.*;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class ExcelWriter {
@@ -26,7 +22,7 @@ public class ExcelWriter {
     ArrayList<ArrayList<Double>> cov = new ArrayList<>();
     FileOutputStream file1 = new FileOutputStream("ДЗ5.xlsx");
 
-    public ExcelWriter(String filePath, ArrayList<ArrayList<?>> result, AllOperations allOperations) throws IOException {
+    public ExcelWriter(String filePath, ArrayList<ArrayList<?>> result, Calculator calculator) throws IOException {
 
         try {
             file = new FileInputStream(filePath);
@@ -34,18 +30,13 @@ public class ExcelWriter {
             JOptionPane.showMessageDialog(null, "выберите файл и произведите рассчеты");
             throw new RuntimeException(e);
         }
-
-//        FileOutputStream file1 = new FileOutputStream("target/ДЗ5.xlsx");
-//        file1.getParentFile().mkdirs();
-//        outFile = new FileOutputStream(file1);
         workbook = new XSSFWorkbook();
-//        workbook.removeSheetAt(workbook.getNumberOfSheets() - 1);
         sheet = workbook.createSheet("Результаты");
         sheetCov = workbook.createSheet("Коэффициенты ковариации");
-        names = allOperations.fillNames();
+        names = calculator.fillNames();
         results = result;
-        cov = allOperations.getCovariation();
-        nameCov = allOperations.getCovName();
+        cov = calculator.getCovariation();
+        nameCov = calculator.getCovName();
         writeIntoExcel();
     }
 

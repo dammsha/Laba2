@@ -2,7 +2,7 @@ package gui;
 
 import data.Data;
 import excel.ExcelWriter;
-import operations.AllOperations;
+import operations.Calculator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class Panel extends JPanel {
     JButton b_exit = new JButton("Выйти из программы");
     GridLayout gr = new GridLayout(4, 1);
     Data data;
-    AllOperations allOperations = new AllOperations();
+    Calculator calculator = new Calculator();
     Jfilechooser jfilechooser = new Jfilechooser();
     String path;
     FrameCombo frameCombo;
@@ -67,9 +67,9 @@ public class Panel extends JPanel {
                         throw new RuntimeException(w);
                     }
                     list = data.getDataArray();
-                    allOperations.start(list);
-                    results = allOperations.fillResults();
-                    JOptionPane.showMessageDialog(null, "Рассчеты выполнены, по-моему это зачет");
+                    calculator.start(list);
+                    results = calculator.fillResults();
+                    JOptionPane.showMessageDialog(null, "Рассчеты выполнены");
                 }
             }
         });
@@ -78,7 +78,7 @@ public class Panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    excelWriter = new ExcelWriter(path, results, allOperations);
+                    excelWriter = new ExcelWriter(path, results, calculator);
                     JOptionPane.showMessageDialog(null, "Файл сохранен");
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, "ошибка сохранения");
